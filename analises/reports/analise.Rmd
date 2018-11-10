@@ -1,0 +1,55 @@
+---
+title: "Análises - Fitness dos robôs gerados."
+author: "Valter Lucena"
+date: "9 de novembro de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(here)
+```
+
+Importa os dados
+
+```{r}
+walls <- read.csv(here("data/run_data_walls.csv"))
+ramfire <- read.csv(here("data/run_data_ramfire.csv"))
+tudo <- read.csv(here("data/run_data.csv"))
+```
+
+Adiciona coluna com o oponente e junta todas as bases em uma só. todo: adicionar base do crazy
+
+```{r}
+walls$opponent <- "walls"
+ramfire$opponent <- "ramfire"
+tudo$opponent <- "all"
+
+categorizados <- rbind(walls, ramfire, tudo)
+```
+
+Plota valores da média da função de adaptação dos indivíduos de cada geração ao longo das gerações
+
+```{r}
+categorizados %>% 
+  ggplot(aes(x = round, 
+             y = avgFit,
+             colour = opponent)) +
+  geom_line()
+```
+
+Plota os valores da função de adaptaçãos dos indivíduos mais aptos a cada geração.
+
+```{r}
+categorizados %>% 
+  ggplot(aes(x = round,
+             y = bestFit,
+             colour = opponent)) +
+  geom_line()
+  
+```
+
