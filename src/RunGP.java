@@ -13,13 +13,15 @@ import java.util.Random;
  */
 public class RunGP {
 	
+	final static String LINE_SEPARATOR = System.lineSeparator(); 
+	
 	// all rivals to be trained against
 	final static String[] rivalsBatch1 = {
 		//"sample.SuperCrazy",
 		//"sample.SuperTracker"
 		//"sample.SuperTrackFire",
-		"sample.Crazy"
-//		"sample.Walls",
+		//"sample.Crazy"
+		"sample.Walls"
 //		"sample.RamFire"
 		//"ary.micro.Weak 1.2"
 		//"sheldor.nano.Sabreur_1.1.1"
@@ -33,11 +35,11 @@ public class RunGP {
 	};
 	
 	final static int 
-		POP_SIZE = 30,
-		MAX_GENS = 10,
+		POP_SIZE = 3,
+		MAX_GENS = 5,
 		MIN_DEPTH = 2,
 		MAX_DEPTH = 7,
-		ROUNDS = 10,
+		ROUNDS = 1,
 		TOURNY_SIZE = 6,
 		BATTLE_HANDICAP = 20;
 	static double 
@@ -228,36 +230,54 @@ public class RunGP {
 	public static void storeRunData(int round, double avgFit, double bestFit, double avgNode, int bestNode, String bestBotName){
 		FileWriter dataStream;
 		try {
+			dataStream = null;
 			// store all info in single file
-			dataStream = new FileWriter(MetaBot.PATH+"/run_data_crazy.csv", true);
-			dataStream.write(round+","+avgFit+","+bestFit+","+avgNode+","+bestNode+","+bestBotName+"\n");
-			dataStream.close();
-			
+			createCSV(dataStream, "/run_data_walls.csv", round, avgFit, bestFit, avgNode, bestNode, bestBotName);
+		
 			// store each variable in its own file (for graphs)
-			dataStream = new FileWriter(MetaBot.PATH+"/run_data_avgFitness.csv", true);
-			dataStream.write(avgFit+"\n");
-			dataStream.close();
-			
-			dataStream = new FileWriter(MetaBot.PATH+"/run_data_bestFitness.csv", true);
-			dataStream.write(bestFit+"\n");
-			dataStream.close();
-			
-			dataStream = new FileWriter(MetaBot.PATH+"/run_data_avgNodes.csv", true);
-			dataStream.write(avgNode+"\n");
-			dataStream.close();
-			
-			dataStream = new FileWriter(MetaBot.PATH+"/run_data_bestNodes.csv", true);
-			dataStream.write(bestNode+"\n");
-			dataStream.close();
-			
-			dataStream = new FileWriter(MetaBot.PATH+"/run_data_candidates.csv", true);
-			dataStream.write(bestBotName+"\n");
-			dataStream.close();
+			createCSV(dataStream, "/run_data_avgFitness.csv", avgFit);
+			createCSV(dataStream, "/run_data_bestFitness.csv", bestFit);
+			createCSV(dataStream, "/run_data_avgNodes.csv", avgNode);
+			createCSV(dataStream, "/run_data_bestNodes.csv", bestNode);
+			createCSV(dataStream, "/run_data_candidates.csv", bestBotName);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private static void createCSV(FileWriter dataStream, String nameCSV, int op) throws IOException {
+		dataStream = new FileWriter(MetaBot.PATH + nameCSV, true);
+		dataStream.write(op + LINE_SEPARATOR);
+		dataStream.close();
+		
+	}
+	
+	private static void createCSV(FileWriter dataStream, String nameCSV, double op) throws IOException {
+		dataStream = new FileWriter(MetaBot.PATH + nameCSV, true);
+		dataStream.write(op + LINE_SEPARATOR);
+		dataStream.close();
+		
+	}
+	
+	private static void createCSV(FileWriter dataStream, String nameCSV, String op) throws IOException {
+		dataStream = new FileWriter(MetaBot.PATH + nameCSV, true);
+		dataStream.write(op + LINE_SEPARATOR);
+		dataStream.close();
+		
+	}
+
+	private static void createCSV(FileWriter dataStream, String nameCSV, int round, double avgFit, double bestFit,
+			double avgNode, int bestNode, String bestBotName) throws IOException {
+		dataStream = new FileWriter(MetaBot.PATH + nameCSV, true);
+		dataStream.write(round + "," + 
+						avgFit + "," + 
+						bestFit + "," + 
+						avgNode + "," + 
+						bestNode + "," + 
+						bestBotName + LINE_SEPARATOR);
+		dataStream.close();
 	}
 	
 	static String[] sampleBots = {
