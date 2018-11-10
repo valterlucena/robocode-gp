@@ -16,40 +16,49 @@ library(here)
 
 Importa os dados
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 walls <- read.csv(here("data/run_data_walls.csv"))
 ramfire <- read.csv(here("data/run_data_ramfire.csv"))
+crazy <- read.csv(here("data/run_data_crazy.csv"))
 tudo <- read.csv(here("data/run_data.csv"))
+
 ```
 
-Adiciona coluna com o oponente e junta todas as bases em uma só. todo: adicionar base do crazy
+Adiciona coluna com o oponente e junta todas as bases em uma só.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 walls$opponent <- "walls"
 ramfire$opponent <- "ramfire"
+crazy$opponent <- "crazy"
 tudo$opponent <- "all"
 
-categorizados <- rbind(walls, ramfire, tudo)
+categorizados <- rbind(walls, ramfire, crazy, tudo)
 ```
 
 Plota valores da média da função de adaptação dos indivíduos de cada geração ao longo das gerações
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 categorizados %>% 
   ggplot(aes(x = round, 
              y = avgFit,
              colour = opponent)) +
-  geom_line()
+  geom_line() +
+  labs(title = "Média de adaptação dos indivíduos por geração",
+       x = "Geração",
+       y = "Média de adaptação")
 ```
 
 Plota os valores da função de adaptaçãos dos indivíduos mais aptos a cada geração.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 categorizados %>% 
   ggplot(aes(x = round,
              y = bestFit,
              colour = opponent)) +
-  geom_line()
+  geom_line() +
+  labs(title = "Valores da função de adaptação dos melhores indivíduos por geração",
+       x = "Geração",
+       y = "Valor de adaptação")
   
 ```
 
