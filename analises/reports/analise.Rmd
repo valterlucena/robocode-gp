@@ -20,7 +20,15 @@ Importa os dados
 walls <- read.csv(here("data/run_data_walls_400.csv"))
 ramfire <- read.csv(here("data/run_data_ramfire.csv"))
 crazy <- read.csv(here("data/run_data_crazy.csv"))
-tudo <- read.csv(here("data/run_data.csv"))
+tudo <- read.csv(here("data/run_data_400.csv"))
+
+```
+
+
+Importa arquivos de teste
+```{r, warning=FALSE, message=FALSE}
+tudo_crossover <- read.csv(here("data/run_data_crossover.csv"))
+tudo_50 <- read.csv(here("data/run_data.csv"))
 
 ```
 
@@ -61,4 +69,33 @@ categorizados %>%
        y = "Valor de adaptação")
   
 ```
+
+Plot para testes:
+
+- Primeira mudança: crossover
+
+```{r, warning=FALSE, message=FALSE}
+tudo_50$opponent <- "test_all"
+tudo_crossover$opponent <- "test_crossover"
+
+test <- rbind(tudo_50, tudo_crossover)
+```
+
+
+```{r, warning=FALSE, message=FALSE}
+test %>% 
+  ggplot(aes(x = round, 
+             y = avgFit,
+             colour = opponent)) +
+  geom_line() +
+  labs(title = "Média de adaptação dos indivíduos por geração",
+       x = "Geração",
+       y = "Média de adaptação")
+
+```
+
+
+
+
+
 
