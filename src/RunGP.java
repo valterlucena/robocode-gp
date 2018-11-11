@@ -20,9 +20,9 @@ public class RunGP {
 		//"sample.SuperCrazy",
 		//"sample.SuperTracker"
 		//"sample.SuperTrackFire",
-		//"sample.Crazy"
+		"sample.Crazy"
 //		"sample.Walls"
-		"sample.RamFire"
+//		"sample.RamFire"
 		//"ary.micro.Weak 1.2"
 		//"sheldor.nano.Sabreur_1.1.1"
 		//"sample.Sabreur"
@@ -232,7 +232,7 @@ public class RunGP {
 		try {
 			dataStream = null;
 			// store all info in single file
-			createCSV(dataStream, "/run_data_walls.csv", round, avgFit, bestFit, avgNode, bestNode, bestBotName);
+			createCSV(dataStream, "/run_data_crazy.csv", round, avgFit, bestFit, avgNode, bestNode, bestBotName);
 		
 			// store each variable in its own file (for graphs)
 			createCSV(dataStream, "/run_data_avgFitness.csv", avgFit);
