@@ -17,7 +17,7 @@ library(here)
 Importa os dados
 
 ```{r, warning=FALSE, message=FALSE}
-walls <- read.csv(here("data/run_data_walls.csv"))
+walls <- read.csv(here("data/run_data_walls_400.csv"))
 ramfire <- read.csv(here("data/run_data_ramfire.csv"))
 crazy <- read.csv(here("data/run_data_crazy.csv"))
 tudo <- read.csv(here("data/run_data.csv"))
