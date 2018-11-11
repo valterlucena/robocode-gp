@@ -20,7 +20,7 @@ Importa os dados
 walls <- read.csv(here("data/run_data_walls_400.csv"))
 ramfire <- read.csv(here("data/run_data_ramfire.csv"))
 crazy <- read.csv(here("data/run_data_crazy.csv"))
-tudo <- read.csv(here("data/run_data.csv"))
+tudo <- read.csv(here("data/run_data_400.csv"))
 
 ```
 
