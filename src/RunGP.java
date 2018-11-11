@@ -21,8 +21,8 @@ public class RunGP {
 		//"sample.SuperTracker"
 		//"sample.SuperTrackFire",
 		//"sample.Crazy"
-		"sample.Walls"
-//		"sample.RamFire"
+//		"sample.Walls"
+		"sample.RamFire"
 		//"ary.micro.Weak 1.2"
 		//"sheldor.nano.Sabreur_1.1.1"
 		//"sample.Sabreur"
@@ -35,11 +35,11 @@ public class RunGP {
 	};
 	
 	final static int 
-		POP_SIZE = 3,
-		MAX_GENS = 5,
+		POP_SIZE = 30,
+		MAX_GENS = 400,
 		MIN_DEPTH = 2,
 		MAX_DEPTH = 7,
-		ROUNDS = 1,
+		ROUNDS = 10,
 		TOURNY_SIZE = 6,
 		BATTLE_HANDICAP = 20;
 	static double 
