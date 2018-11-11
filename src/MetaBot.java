@@ -10,9 +10,9 @@ public class MetaBot {
 
 	// Static Variables //////////////////////////////////////////////////////
 	final static 
-		String PATH = new String("/home/vinicius/robocode/robots/sampleex");
+		String PATH = new String("/home/thalyta/robocode/robots/sampleex");
 		String PACKAGE = new String("sampleex");
-		String JARS = new String("/home/vinicius/robocode/libs/robocode.jar");
+		String JARS = new String("/home/thalyta/robocode/libs/robocode.jar");
 		
 	final static int 
 		NUM_CHROMOS = 5,

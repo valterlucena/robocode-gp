@@ -20,8 +20,8 @@ public class RunGP {
 		//"sample.SuperCrazy",
 		//"sample.SuperTracker"
 		//"sample.SuperTrackFire",
-		//"sample.Crazy"
-//		"sample.Walls"
+		"sample.Crazy",
+		"sample.Walls",
 		"sample.RamFire"
 		//"ary.micro.Weak 1.2"
 		//"sheldor.nano.Sabreur_1.1.1"
@@ -36,16 +36,16 @@ public class RunGP {
 	
 	final static int 
 		POP_SIZE = 30,
-		MAX_GENS = 400,
+		MAX_GENS = 50,
 		MIN_DEPTH = 2,
 		MAX_DEPTH = 7,
 		ROUNDS = 10,
 		TOURNY_SIZE = 6,
 		BATTLE_HANDICAP = 20;
 	static double 
-		PROB_CROSSOVER = 0.85,
-		PROB_REPLICATION = 0.05,
-		PROB_MUTATION = 0.1,
+		PROB_CROSSOVER = 0.8,
+		PROB_REPLICATION = 0.5,
+		PROB_MUTATION = 0.15,
 		PROB_ARCHITECTURE = 0.0,
 		
 		PROB_INTERNAL_NODE = 0.9,
@@ -232,7 +232,7 @@ public class RunGP {
 		try {
 			dataStream = null;
 			// store all info in single file
-			createCSV(dataStream, "/run_data_walls.csv", round, avgFit, bestFit, avgNode, bestNode, bestBotName);
+			createCSV(dataStream, "/run_data.csv", round, avgFit, bestFit, avgNode, bestNode, bestBotName);
 		
 			// store each variable in its own file (for graphs)
 			createCSV(dataStream, "/run_data_avgFitness.csv", avgFit);

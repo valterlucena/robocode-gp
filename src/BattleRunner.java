@@ -12,7 +12,7 @@ public class BattleRunner {
 	
 	public BattleRunner(){
 		System.out.println("entrou");
-		engine = new RobocodeEngine(new java.io.File("/home/vinicius/robocode"));
+		engine = new RobocodeEngine(new java.io.File("/home/thalyta/robocode"));
 		battleObserver = new BattleObserver();
 		engine.addBattleListener(battleObserver);
 		engine.setVisible(false);
