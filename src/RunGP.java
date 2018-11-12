@@ -173,8 +173,8 @@ public class RunGP {
 		while(newPop < POP_SIZE){
 			geneticOporator = random.nextDouble();
 			if((geneticOporator -= PROB_CROSSOVER) <= 0){
-				int p1 = tournamentSelect();
-				int p2 = tournamentSelect();
+				int p1 = rouletteSelect();
+				int p2 = rouletteSelect();
 				
 				//System.out.println("Crossing over bots " +p1+ " & " +p2+" -> " +newPop);
 				
@@ -182,10 +182,10 @@ public class RunGP {
 				//newPool[newPop] = pool[tournamentSelect()].crossover(pool[tournamentSelect()], genCount+1, newPop);
 			}else if((geneticOporator -= PROB_MUTATION) <= 0){
 				//System.out.println("Mutating bot");
-				newPool[newPop] = pool[tournamentSelect()].mutate(genCount, newPop);
+				newPool[newPop] = pool[rouletteSelect()].mutate(genCount, newPop);
 			}else{ 
 				//System.out.println("Replicating Bot");
-				newPool[newPop] = pool[tournamentSelect()].replicate(genCount, newPop);
+				newPool[newPop] = pool[rouletteSelect()].replicate(genCount, newPop);
 			}
 			newPop++;
 		}
@@ -198,7 +198,7 @@ public class RunGP {
 		fitnesses = arena.runBatchWithSamples(botNames, sampleSet, ROUNDS);
 	}
 	
-	/*
+	
 	private static int rouletteSelect(){
 		// divy up roulette selection probabilities 
 		for(int i = 0; i < POP_SIZE; i++){
@@ -214,7 +214,7 @@ public class RunGP {
 		System.out.println("Warning: roulette selection out of bounds by "+pie);
 		return POP_SIZE-1;
 	}
-	*/
+	
 	
 	public static int tournamentSelect(){
 		int size = TOURNY_SIZE;
