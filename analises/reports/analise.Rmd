@@ -25,13 +25,6 @@ tudo <- read.csv(here("data/run_data_400.csv"))
 ```
 
 
-Importa arquivos de teste
-```{r, warning=FALSE, message=FALSE}
-tudo_crossover <- read.csv(here("data/run_data_crossover.csv"))
-tudo_50 <- read.csv(here("data/run_data.csv"))
-
-```
-
 Adiciona coluna com o oponente e junta todas as bases em uma só.
 
 ```{r, warning=FALSE, message=FALSE}
@@ -70,20 +63,30 @@ categorizados %>%
   
 ```
 
-Plot para testes:
-
-- Primeira mudança: crossover
+Depois das melhorias
 
 ```{r, warning=FALSE, message=FALSE}
-tudo_50$opponent <- "test_all"
-tudo_crossover$opponent <- "test_crossover"
+walls_novo <- read.csv(here("data/run_data_wall_melhorias.csv"))
+ramfire_novo <- read.csv(here("data/run_data_ramfire_melhorias.csv"))
+crazy_novo <- read.csv(here("data/run_data_crazy_melhorias.csv"))
+tudo_novo <- read.csv(here("data/run_data_melhorias.csv"))
 
-test <- rbind(tudo_50, tudo_crossover)
 ```
 
 
+
 ```{r, warning=FALSE, message=FALSE}
-test %>% 
+walls_novo$opponent <- "new_walls"
+tudo_novo$opponent <- "new_all"
+crazy_novo$opponent <- "new_walls"
+ramfire_novo$opponent <- "new_walls"
+
+categorizados_novo <- rbind(walls_novo, tudo_novo, crazy_novo, ramfire_novo)
+
+```
+
+```{r, warning=FALSE, message=FALSE}
+categorizados_novo %>% 
   ggplot(aes(x = round, 
              y = avgFit,
              colour = opponent)) +
@@ -91,11 +94,16 @@ test %>%
   labs(title = "Média de adaptação dos indivíduos por geração",
        x = "Geração",
        y = "Média de adaptação")
-
 ```
 
-
-
-
-
-
+```{r, warning=FALSE, message=FALSE}
+categorizados_novo %>% 
+  ggplot(aes(x = round,
+             y = bestFit,
+             colour = opponent)) +
+  geom_line() +
+  labs(title = "Valores da função de adaptação dos melhores indivíduos por geração",
+       x = "Geração",
+       y = "Valor de adaptação")
+  
+```
